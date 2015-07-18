@@ -1,0 +1,19 @@
+ test word file exists
+ test word file doesnot exist
+ test word file is empty
+ test word file is not empty
+ test word is from sample words only
+ test word is not from sample words
+ test guess word is empty
+ test guess word is not empty
+ test guess word contains only characters
+ test guess word doesnot contain only characters
+ test words match
+ test words donot match
+ test length matches
+ test length doesnot match
+ test number of cows n bulls are correct
+ test number of cows n bulls are not correct
+ test number of attempts are five
+ test history hash is correct
+ test history hash is not correct

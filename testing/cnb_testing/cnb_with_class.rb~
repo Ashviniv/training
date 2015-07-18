@@ -1,0 +1,84 @@
+class Cnb
+
+  def sample_words
+    @sample_words = ["cake", "cat", "test", "buffer", "four","#"]
+    @word = "cake"
+  end
+
+  def user_input
+    @guess = "cake"
+  end 
+
+  def guess
+    @guess = user_input
+  end
+
+  def word
+    @word = sample_words
+  end
+
+  def words_match
+    sample_words
+    user_input
+    @guess == @word
+  end
+
+  def length_match
+    sample_words
+    user_input
+    @guess == @word
+  end
+
+  def cows_n_bulls
+    sample_words
+    user_input
+    @bulls = 0 
+    @cows = 0 
+    guess.each_char.with_index do |c, index|
+      if word.include?(guess[index])
+        guess[index] == word[index]? @bulls += 1: @cows += 1
+      end
+    end
+    return @cows, @bulls
+
+  end
+
+  def main
+    while true do
+      word = sample_words
+      history = []
+      max_chances = 5
+      no_of_guesses = 0
+      retries = 0
+      guess = ""
+      for no_of_guesses in 0...max_chances do
+        begin
+          puts"you have #{max_chances - no_of_guesses} chances\n"
+          puts"Guess the word of length #{word.length}\n"
+          guess = user_input
+          raise InvalidWordError,"Invalid word" if guess.match(/[^a-zA-z]/)
+      rescue InvalidWordError => e
+        p e
+      end
+      cnb = cows_n_bulls
+      history += ["Attempt #{no_of_guesses + 1} cows: #{cnb[0]} bulls: #{cnb[1]}"]
+      puts"you have got cows: #{cnb[0]} and bulls: #{cnb[1]}\n"
+      if cnb[0] == 0 && cnb[1] == 0
+        puts"sorry,you lost!!\n"
+        break
+      end
+      end
+      puts"sorry!! your chances are over\n\n" if no_of_guesses == max_chances - 1
+      begin
+        puts "#{history}\n"
+        puts "Do you want to continue?[Y/N]\n"
+        option = gets.chomp
+      end
+    end
+
+  end
+end
+  cnb = Cnb.new
+  cnb.sample_words
+  cnb.user_input
+p cnb.cows_n_bulls
